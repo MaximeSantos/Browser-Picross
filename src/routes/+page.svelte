@@ -1,17 +1,26 @@
 <script>
   import Table from './Table.svelte';
+  import Board from './Board.svelte';
 
-  // Setting up our variables based on the .non format for now
+  // Setting up our variables based on the .non format for now (https://webpbn.com/export.cgi amongst many other possibilities)
   const solution = [0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0];
-  const board = [3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3];
   const height = 5;
-  const width = 5;
-
-  let test = "Hello";
+  const width = 10;
+  let board = Array.from({length: height*width}, () => 3);
+  console.log(board)
 </script>
 
 <h1>Browser Picross</h1>
-<p>{test}</p>
 <div class="board">
   <Table {height} {width}/>
 </div>
+
+<div class="board">
+  <Board {height} {width} {board}/>
+</div>
+
+<style>
+  .board {
+    margin: 2rem
+  }
+</style>
