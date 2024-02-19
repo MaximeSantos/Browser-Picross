@@ -2,6 +2,22 @@
 	export let height: number;
 	export let width: number;
 	export let board: number[];
+
+	const handleClick = (e: MouseEvent, index: number) => {
+		if (e.button == 0) {
+			if (board[index] != 1) {
+				board[index] = 1;
+			} else {
+				board[index] = 3;
+			}
+		} else if (e.button == 2) {
+			if (board[index] != 0) {
+				board[index] = 0;
+			} else {
+				board[index] = 3;
+			}
+		}
+	};
 </script>
 
 <div class="container">
@@ -26,7 +42,15 @@
 	<!-- Body of the grid -->
 	<div class="grid" style:--height={height} style:--width={width}>
 		{#each board as cell, i}
-			<div class="cell">{cell}</div>
+			<button
+				class="cell"
+				class:crossed={cell == 0}
+				class:full={cell == 1}
+				on:contextmenu|preventDefault={(e) => handleClick(e, i)}
+				on:click={(e) => handleClick(e, i)}
+				type="button"
+				tabindex="0"
+			/>
 		{/each}
 	</div>
 </div>
@@ -61,7 +85,34 @@
 	}
 
 	.cell {
-		/* border: 1px solid #FBFBFE; */
+		border: 1px solid #1c1b22;
+	}
+	.cell.full {
+		background-color: #cccccc;
+	}
+	.cell.crossed {
+		position: relative;
+		overflow: hidden;
+	}
+	.cell.crossed:before,
+	.cell.crossed:after {
+		position: absolute;
+		content: '';
+		background-color: #fbfbfb;
+		display: block;
+		width: 100%;
+		height: 1px;
+		-webkit-transform: rotate(-45deg);
+		transform: rotate(-45deg);
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		margin: auto;
+	}
+	.cell.crossed:after {
+		-webkit-transform: rotate(45deg);
+		transform: rotate(45deg);
 	}
 
 	.grid {
