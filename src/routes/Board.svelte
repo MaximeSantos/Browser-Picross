@@ -1,23 +1,14 @@
 <script lang="ts">
+	import { createEventDispatcher } from 'svelte';
+
 	export let height: number;
 	export let width: number;
 	export let board: number[];
 
-	const handleClick = (e: MouseEvent, index: number) => {
-		if (e.button == 0) {
-			if (board[index] != 1) {
-				board[index] = 1;
-			} else {
-				board[index] = 3;
-			}
-		} else if (e.button == 2) {
-			if (board[index] != 0) {
-				board[index] = 0;
-			} else {
-				board[index] = 3;
-			}
-		}
-	};
+	const dispatch = createEventDispatcher();
+	function click(e: MouseEvent, i: number) {
+		dispatch('click', { button: e.button, index: i });
+	}
 </script>
 
 <div class="container">
@@ -46,8 +37,8 @@
 				class="cell"
 				class:crossed={cell == 0}
 				class:full={cell == 1}
-				on:contextmenu|preventDefault={(e) => handleClick(e, i)}
-				on:click={(e) => handleClick(e, i)}
+				on:contextmenu|preventDefault={(e) => click(e, i)}
+				on:click={(e) => click(e, i)}
 				type="button"
 				tabindex="0"
 			/>
