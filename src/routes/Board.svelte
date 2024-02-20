@@ -6,8 +6,12 @@
 	export let board: number[];
 
 	const dispatch = createEventDispatcher();
-	function click(e: MouseEvent, i: number) {
-		dispatch('click', { button: e.button, index: i });
+
+	function mousedown(e: MouseEvent, i: number) {
+		dispatch('mousedown', { button: e.button, index: i });
+	}
+	function mouseover(e: MouseEvent, i: number) {
+		dispatch('mouseover', { e: e, index: i });
 	}
 </script>
 
@@ -37,8 +41,10 @@
 				class="cell"
 				class:crossed={cell == 0}
 				class:full={cell == 1}
-				on:contextmenu|preventDefault={(e) => click(e, i)}
-				on:click={(e) => click(e, i)}
+				on:contextmenu|preventDefault
+				on:mousedown={(e) => mousedown(e, i)}
+				on:mouseover={(e) => mouseover(e, i)}
+				on:focus
 				type="button"
 				tabindex="0"
 			/>
@@ -56,6 +62,13 @@
 			'left grid';
 	}
 
+	.grid {
+		grid-area: grid;
+		display: grid;
+		grid-template-columns: repeat(var(--width), 2rem);
+		grid-template-rows: repeat(var(--height), 2rem);
+	}
+
 	.top-h {
 		grid-area: top;
 		display: flex;
@@ -68,7 +81,6 @@
 		grid-area: left;
 		gap: 1px;
 	}
-
 	.top-h div,
 	.left-h div {
 		height: 2rem;
@@ -104,12 +116,5 @@
 	.cell.crossed:after {
 		-webkit-transform: rotate(45deg);
 		transform: rotate(45deg);
-	}
-
-	.grid {
-		grid-area: grid;
-		display: grid;
-		grid-template-columns: repeat(var(--width), 2rem);
-		grid-template-rows: repeat(var(--height), 2rem);
 	}
 </style>
