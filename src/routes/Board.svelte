@@ -6,12 +6,11 @@
 	export let board: number[];
 
 	const dispatch = createEventDispatcher();
-
 	function mousedown(e: MouseEvent, i: number) {
 		dispatch('mousedown', { button: e.button, index: i });
 	}
 	function mouseover(e: MouseEvent, i: number) {
-		dispatch('mouseover', { e: e, index: i });
+		dispatch('mouseover', { buttons: e.buttons, index: i });
 	}
 </script>
 
