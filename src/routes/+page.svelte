@@ -18,9 +18,13 @@
 	// Setting up our variables based on the .non format for now (https://webpbn.com/export.cgi amongst many other possibilities)
 	// 0 is a crossed cell / 1 is a full cell
 	// We also use -1 to represent an empty cell in our code
-	const solution = [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0];
+	const width = 5;
 	const height = 10;
-	const width = 10;
+	const hints = {
+		rows: [[2], [2, 1], [1, 1], [3], [1, 1], [1, 1], [2], [1, 1], [1, 2], [2]],
+		cols: [[2, 1], [2, 1, 3], [7], [1, 3], [2, 1]]
+	};
+	const solution = [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0];
 	// Initialising a one dimensionnal array to represent our empty board.
 	let board = Array.from({ length: height * width }, () => -1);
 	let startDragOn = 0;
@@ -43,7 +47,14 @@
 <div class="container">
 	<h1>Browser Picross</h1>
 	<div class="board">
-		<Board {height} {width} {board} on:mousedown={handleMouseDown} on:mouseover={handleMouseOver} />
+		<Board
+			{height}
+			{width}
+			{board}
+			{hints}
+			on:mousedown={handleMouseDown}
+			on:mouseover={handleMouseOver}
+		/>
 	</div>
 </div>
 
