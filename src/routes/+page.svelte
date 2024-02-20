@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Board from './Board.svelte';
 	import getAction from '../functions/getAction';
+	import getNextCellStateOnMouseOver from '../functions/getNextCellStateOnMouseOver';
 
 	// 0 == Left Click / 2 == Right Click / 1 == Middle Click
 	type MouseDownType = {
@@ -34,23 +35,8 @@
 		}
 	}
 	function handleMouseOver({ detail }: CustomEvent<MouseOverType>) {
-		const curCell = board[detail.index];
 		let action = getAction('mouseover', detail.buttons);
-
-		// Now we check if we go to delete or write mode :
-		if (action != null) {
-			if (action == startDragOn) {
-				// Delete mode : we only execute on cells of the same type as startDragOn, our output is alway -1
-				if (curCell == startDragOn) {
-					board[detail.index] = -1;
-				}
-			} else {
-				// Write mode : we only execute on cells different from our action, our output is always our action
-				if (curCell != action) {
-					board[detail.index] = action;
-				}
-			}
-		}
+		board[detail.index] = getNextCellStateOnMouseOver(action, board[detail.index], startDragOn);
 	}
 </script>
 
