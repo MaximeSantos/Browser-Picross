@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Board from './Board.svelte';
+	import getAction from '../functions/getAction';
 
 	// 0 == Left Click / 2 == Right Click / 1 == Middle Click
 	type MouseDownType = {
@@ -25,30 +26,16 @@
 
 	function handleMouseDown({ detail }: CustomEvent<MouseDownType>) {
 		startDragOn = board[detail.index];
-		switch (detail.button) {
-			// Left click
-			case 0:
-				board[detail.index] = board[detail.index] == 1 ? -1 : 1;
-				break;
-			// Middle Click
-			case 1:
-				board[detail.index] = -1;
-				break;
-			// Right Click
-			case 2:
-				board[detail.index] = board[detail.index] == 0 ? -1 : 0;
-				break;
-			// Everything else
-			default:
-				break;
+		// Convert our button press to our expected result in our custom .non format
+		// Left Click get 1 / Right Click get 0 / Middle Click get -1
+		let action = getAction('mousedown', detail.button);
+		if (action != null) {
+			board[detail.index] = action == board[detail.index] ? -1 : action;
 		}
 	}
 	function handleMouseOver({ detail }: CustomEvent<MouseOverType>) {
 		const curCell = board[detail.index];
-		// Convert our button press to our expected result in our custom .non format
-		// Left Click get 1 / Right Click get 0 / Middle Click get -1
-		let action =
-			detail.buttons == 1 ? 1 : detail.buttons == 2 ? 0 : detail.buttons == 4 ? -1 : null;
+		let action = getAction('mouseover', detail.buttons);
 
 		// Now we check if we go to delete or write mode :
 		if (action != null) {
