@@ -18,8 +18,8 @@ export default function getNextCellStateOnMouseOver(
 				return -1;
 			}
 		} else {
-			// Write mode : we only execute on cells different from our action, our output is always our action
-			if (curCell != action) {
+			// Write mode : we only execute on empty cells or on the same cell type we started dragging on, our output is always our action
+			if (curCell == -1 || curCell == startDragOn) {
 				return action;
 			}
 		}
