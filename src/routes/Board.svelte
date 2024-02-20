@@ -13,6 +13,8 @@
 	function mouseover(e: MouseEvent, i: number) {
 		dispatch('mouseover', { buttons: e.buttons, index: i });
 	}
+
+	console.log(board.length);
 </script>
 
 <div class="container">
@@ -52,6 +54,11 @@
 				on:contextmenu|preventDefault
 				on:mousedown={(e) => mousedown(e, i)}
 				on:mouseover={(e) => mouseover(e, i)}
+				class:accent-t={i > width && (i + 1) % (5 * width) <= 5 && (i + 1) % (5 * width) > 0}
+				class:accent-b={i + 6 < board.length + 1 &&
+					i + 6 > width &&
+					(i + 6) % (5 * width) <= 5 &&
+					(i + 6) % (5 * width) > 0}
 				on:focus
 				type="button"
 				tabindex="0"
@@ -64,6 +71,10 @@
 	:root {
 		--col-height: 2rem;
 		--row-width: 2rem;
+		--border-light: #51505a;
+		--full-cross-light: #ccc;
+		--text-light: #fbfbfb;
+		--dark: #1c1b22;
 	}
 
 	.container {
@@ -115,10 +126,16 @@
 		width: 100%;
 		height: 100%;
 		padding: 0;
-		border: 1px solid #1c1b22;
+		border: 1px solid var(--dark);
+	}
+	.cell.accent-t {
+		border-top: 1px solid var(--border-light);
+	}
+	.cell.accent-b {
+		border-bottom: 1px solid var(--border-light);
 	}
 	.cell.full {
-		background-color: #cccccc;
+		background-color: var(--full-cross-light);
 	}
 	.cell.crossed {
 		position: relative;
@@ -128,7 +145,7 @@
 	.cell.crossed:after {
 		position: absolute;
 		content: '';
-		background-color: #fbfbfb;
+		background-color: var(--full-cross-light);
 		display: block;
 		width: 100%;
 		height: 1px;
