@@ -6,6 +6,25 @@
 	export let board: number[];
 	export let hints: { rows: number[][]; cols: number[][] };
 
+	function accentTop(i: number): boolean {
+		return i > width && (i + 1) % (5 * width) <= width && (i + 1) % (5 * width) > 0;
+	}
+	function accentBottom(i: number): boolean {
+		return (
+			i + width < board.length &&
+			i + width + 1 > width &&
+			(i + width + 1) % (5 * width) <= width &&
+			(i + width + 1) % (5 * width) > 0
+		);
+	}
+	function accentRight(i: number): boolean {
+		// Must not be last cell of a row && the cell must be a multiple of five reset on each row
+		return (i + 1) % width != 0 && ((i + 1) % width) % 5 === 0;
+	}
+	function accentLeft(i: number): boolean {
+		return i % width !== 0 && (i % width) % 5 === 0;
+	}
+
 	const dispatch = createEventDispatcher();
 	function mousedown(e: MouseEvent, i: number) {
 		dispatch('mousedown', { button: e.button, index: i });
@@ -47,18 +66,18 @@
 	<!-- Body of the grid -->
 	<div class="grid" style:--n-rows={height} style:--n-cols={width}>
 		{#each board as cell, i}
+			<!-- Probably many ways to improve on the accent class conditons -->
 			<button
 				class="cell"
 				class:crossed={cell == 0}
 				class:full={cell == 1}
+				class:accent-t={accentTop(i)}
+				class:accent-r={accentRight(i)}
+				class:accent-b={accentBottom(i)}
+				class:accent-l={accentLeft(i)}
 				on:contextmenu|preventDefault
 				on:mousedown={(e) => mousedown(e, i)}
 				on:mouseover={(e) => mouseover(e, i)}
-				class:accent-t={i > width && (i + 1) % (5 * width) <= 5 && (i + 1) % (5 * width) > 0}
-				class:accent-b={i + 6 < board.length + 1 &&
-					i + 6 > width &&
-					(i + 6) % (5 * width) <= 5 &&
-					(i + 6) % (5 * width) > 0}
 				on:focus
 				type="button"
 				tabindex="0"
@@ -131,8 +150,14 @@
 	.cell.accent-t {
 		border-top: 1px solid var(--border-light);
 	}
+	.cell.accent-r {
+		border-right: 1px solid var(--border-light);
+	}
 	.cell.accent-b {
 		border-bottom: 1px solid var(--border-light);
+	}
+	.cell.accent-l {
+		border-left: 1px solid var(--border-light);
 	}
 	.cell.full {
 		background-color: var(--full-cross-light);

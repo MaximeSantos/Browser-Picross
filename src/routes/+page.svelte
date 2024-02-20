@@ -64,8 +64,4 @@
 		flex-flow: column;
 		align-items: center;
 	}
-
-	.board {
-		margin: 2rem;
-	}
 </style>
