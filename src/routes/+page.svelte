@@ -2,6 +2,7 @@
 	import Board from './Board.svelte';
 	import getAction from '../functions/getAction';
 	import getNextCellStateOnMouseOver from '../functions/getNextCellStateOnMouseOver';
+	import checkWinCondition from '../functions/checkWinCondition';
 
 	// 0 == Left Click / 2 == Right Click / 1 == Middle Click
 	type MouseDownType = {
@@ -24,10 +25,20 @@
 		rows: [[2], [2, 1], [1, 1], [3], [1, 1], [1, 1], [2], [1, 1], [1, 2], [2]],
 		cols: [[2, 1], [2, 1, 3], [7], [1, 3], [2, 1]]
 	};
-	const solution = [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0];
+	const solution = [
+		0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0,
+		1, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0
+	];
 	// Initialising a one dimensionnal array to represent our empty board.
 	let board = Array.from({ length: height * width }, () => -1);
 	let startDragOn = 0;
+	let isWon = false;
+
+	$: if (checkWinCondition(board, solution)) {
+		isWon = true;
+	} else {
+		isWon = false;
+	}
 
 	function handleMouseDown({ detail }: CustomEvent<MouseDownType>) {
 		startDragOn = board[detail.index];
@@ -45,7 +56,7 @@
 </script>
 
 <div class="container">
-	<h1>Browser Picross</h1>
+	<h1>Browser Picross {isWon ? 'You won !' : ''}</h1>
 	<div class="board">
 		<Board
 			{height}
