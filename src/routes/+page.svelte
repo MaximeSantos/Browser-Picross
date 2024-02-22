@@ -41,17 +41,21 @@
 	}
 
 	function handleMouseDown({ detail }: CustomEvent<MouseDownType>) {
-		startDragOn = board[detail.index];
-		// Convert our button press to our expected result in our custom .non format
-		// Left Click get 1 / Right Click get 0 / Middle Click get -1
-		let action = getAction('mousedown', detail.button);
-		if (action != null) {
-			board[detail.index] = action == board[detail.index] ? -1 : action;
+		if (!isWon) {
+			startDragOn = board[detail.index];
+			// Convert our button press to our expected result in our custom .non format
+			// Left Click get 1 / Right Click get 0 / Middle Click get -1
+			let action = getAction('mousedown', detail.button);
+			if (action != null) {
+				board[detail.index] = action == board[detail.index] ? -1 : action;
+			}
 		}
 	}
 	function handleMouseOver({ detail }: CustomEvent<MouseOverType>) {
-		let action = getAction('mouseover', detail.buttons);
-		board[detail.index] = getNextCellStateOnMouseOver(action, board[detail.index], startDragOn);
+		if (!isWon) {
+			let action = getAction('mouseover', detail.buttons);
+			board[detail.index] = getNextCellStateOnMouseOver(action, board[detail.index], startDragOn);
+		}
 	}
 </script>
 
