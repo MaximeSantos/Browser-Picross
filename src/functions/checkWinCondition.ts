@@ -6,7 +6,6 @@
  */
 export default function checkWinCondition(board: number[], solution: number[]): boolean {
 	for (let i = 0, l = board.length; i < l; i++) {
-		console.log(board.length, solution.length);
 		// Checks that every 1s in the solution have a counterpart the board.
 		// Also checks that there are no 1 on the board where a 0 is in the solution.
 		if ((solution[i] == 1 && board[i] != 1) || (solution[i] == 0 && board[i] == 1)) {

@@ -32,8 +32,6 @@
 	function mouseover(e: MouseEvent, i: number) {
 		dispatch('mouseover', { buttons: e.buttons, index: i });
 	}
-
-	console.log(board.length);
 </script>
 
 <div class="container">
