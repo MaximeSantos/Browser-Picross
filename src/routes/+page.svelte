@@ -1,20 +1,10 @@
 <script lang="ts">
+	import type { MouseDownType, MouseOverType } from '$lib/types/types';
+	import type {} from '$lib/types/types';
 	import Board from './Board.svelte';
-	import getAction from '../functions/getAction';
-	import getNextCellStateOnMouseOver from '../functions/getNextCellStateOnMouseOver';
-	import checkWinCondition from '../functions/checkWinCondition';
-
-	// 0 == Left Click / 2 == Right Click / 1 == Middle Click
-	type MouseDownType = {
-		button: number;
-		index: number;
-	};
-
-	// 1 == Left Click / 2 == Right Click / 4 == Middle Click
-	type MouseOverType = {
-		buttons: number;
-		index: number;
-	};
+	import getAction from '../lib/functions/getAction';
+	import getNextCellStateOnMouseOver from '../lib/functions/getNextCellStateOnMouseOver';
+	import checkWinCondition from '../lib/functions/checkWinCondition';
 
 	// Setting up our variables based on the .non format for now (https://webpbn.com/export.cgi amongst many other possibilities)
 	// 0 is a crossed cell / 1 is a full cell
