@@ -37,8 +37,8 @@
 <div class="container">
 	<!-- Header Left -->
 	<div class="left-h">
-		{#each hints.rows as hintList}
-			<div class="hint-container">
+		{#each hints.rows as hintList, i}
+			<div class="hint-container" class:bg-light={i % 2}>
 				{#each hintList as hint}
 					<div class="hint">
 						{hint}
@@ -50,8 +50,8 @@
 
 	<!-- Header Top -->
 	<div class="top-h">
-		{#each hints.cols as hintList}
-			<div class="hint-container">
+		{#each hints.cols as hintList, i}
+			<div class="hint-container" class:bg-light={i % 2}>
 				{#each hintList as hint}
 					<div class="hint">
 						{hint}
@@ -110,6 +110,10 @@
 		grid-template-rows: repeat(var(--n-rows), var(--row-width));
 	}
 
+	.bg-light {
+		background-color: var(--border-light);
+	}
+
 	.top-h,
 	.left-h {
 		display: flex;
@@ -125,14 +129,21 @@
 	.hint-container {
 		display: flex;
 		align-items: center;
+		border: 1px solid var(--dark);
 	}
 	.top-h .hint-container {
 		flex-direction: column;
+		justify-content: flex-end;
 		width: var(--row-width);
+		height: 10rem;
+		padding-bottom: 0.2rem;
 	}
 	.left-h .hint-container {
 		flex-direction: row;
+		justify-content: flex-end;
 		height: var(--col-height);
+		width: 10rem;
+		padding-right: 0.2rem;
 	}
 	.hint {
 		width: 1rem;
