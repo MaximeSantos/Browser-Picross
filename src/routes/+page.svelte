@@ -5,6 +5,10 @@
 	import getAction from '../lib/functions/getAction';
 	import getNextCellStateOnMouseOver from '../lib/functions/getNextCellStateOnMouseOver';
 	import checkWinCondition from '../lib/functions/checkWinCondition';
+	import type { PageData } from './$types';
+
+	export let data: PageData;
+	console.log('DATA', data.post);
 
 	// Setting up our variables based on the .non format for now (https://webpbn.com/export.cgi amongst many other possibilities)
 	// 0 is a crossed cell / 1 is a full cell
