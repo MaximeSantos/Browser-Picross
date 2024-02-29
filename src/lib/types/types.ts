@@ -1,8 +1,19 @@
 export type PuzzleType = {
-	width: number;
+	id: string;
+	catalogue: string;
+	title: string;
+	author: string;
+	copyright: string;
+	licence: string;
+	collectionId: string;
+	collectionName: string;
 	height: number;
-	hints: { rows: number[][]; cols: number[][] };
+	width: number;
+	rows: number[][];
+	columns: number[][];
 	solution: number[];
+	created: string;
+	updated: string;
 };
 
 // 0 == Left Click / 2 == Right Click / 1 == Middle Click
