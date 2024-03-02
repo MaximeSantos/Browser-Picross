@@ -5,8 +5,8 @@ const client = new PocketBase(url);
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load() {
-	const puzzle = await client.collection('puzzles').getOne('jbn2twsw3zqfdm1');
+	const puzzles = await client.collection('puzzles').getList();
 	return {
-		puzzle: puzzle
+		puzzles: puzzles
 	};
 }
