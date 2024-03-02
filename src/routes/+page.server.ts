@@ -1,7 +1,7 @@
+import { DB_URL } from '$env/static/private';
 import PocketBase from 'pocketbase';
 
-const url = 'https://browser-picross-db.pockethost.io/';
-const client = new PocketBase(url);
+const client = new PocketBase(DB_URL);
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load() {
