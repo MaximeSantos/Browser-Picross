@@ -6,6 +6,7 @@
 	export let board: number[];
 	export let hints: { rows: number[][]; cols: number[][] };
 
+	// TODO Find a better solution to add the borders (maybe add a dataset or something similar on each cell to help locate their coordinates later on)
 	function accentTop(i: number): boolean {
 		return i > width && (i + 1) % (5 * width) <= width && (i + 1) % (5 * width) > 0;
 	}
@@ -85,15 +86,6 @@
 </div>
 
 <style>
-	:root {
-		--col-height: 2rem;
-		--row-width: 2rem;
-		--border-light: #51505a;
-		--full-cross-light: #ccc;
-		--text-light: #fbfbfb;
-		--dark: #1c1b22;
-	}
-
 	.container {
 		display: grid;
 		grid-template-columns: auto 1fr;

@@ -1,0 +1,26 @@
+*, html {
+  box-sizing: border-box;
+}
+
+:root {
+  --col-height: 2rem;
+  --row-width: 2rem;
+  --border-light: #51505a;
+  --full-cross-light: #ccc;
+  --text-light: #fbfbfb;
+  --dark: #1c1b22;
+}
+
+a {
+  color: var(--text-light);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+.container {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}

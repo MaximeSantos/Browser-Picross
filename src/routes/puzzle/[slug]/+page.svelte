@@ -68,11 +68,3 @@
 		{/await}
 	</div>
 </div>
-
-<style>
-	.container {
-		display: flex;
-		flex-flow: column;
-		align-items: center;
-	}
-</style>
