@@ -50,7 +50,7 @@
 </script>
 
 <div class="container">
-	<h1>{isWon ? 'You won !' : 'Browser Picross'}</h1>
+	<h1><a href="/">{isWon ? 'You won !' : 'Browser Picross'}</a></h1>
 	<div class="board">
 		{#await data.puzzle}
 			<p>Loading ...</p>

@@ -5,7 +5,7 @@
 </script>
 
 <div class="container">
-	<h1>Browser Picross</h1>
+	<h1><a href="/">Browser Picross</a></h1>
 	<h2>Puzzles</h2>
 	<div>
 		{#each data.puzzles.items as puzzle}
