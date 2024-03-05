@@ -35,7 +35,7 @@
 	}
 </script>
 
-<div class="container">
+<div class="board-container">
 	<!-- Header Left -->
 	<div class="left-h">
 		{#each hints.rows as hintList, i}
@@ -86,13 +86,14 @@
 </div>
 
 <style>
-	.container {
+	.board-container {
 		display: grid;
 		grid-template-columns: auto 1fr;
 		grid-template-rows: auto 1fr;
 		grid-template-areas:
 			'. top'
 			'left grid';
+		margin-right: var(--hint-length-size);
 	}
 
 	.grid {
@@ -127,15 +128,14 @@
 		flex-direction: column;
 		justify-content: flex-end;
 		width: var(--row-width);
-		height: 10rem;
+		height: var(--hint-length-size);
 		padding-bottom: 0.2rem;
 	}
 	.left-h .hint-container {
 		flex-direction: row;
 		justify-content: flex-end;
 		height: var(--col-height);
-		width: 10rem;
-		padding-right: 0.2rem;
+		width: var(--hint-length-size);
 	}
 	.hint {
 		width: 1rem;

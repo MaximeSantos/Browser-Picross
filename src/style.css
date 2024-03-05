@@ -5,6 +5,7 @@
 :root {
   --col-height: 2rem;
   --row-width: 2rem;
+  --hint-length-size: 10rem;
   --border-light: #51505a;
   --full-cross-light: #ccc;
   --text-light: #fbfbfb;
