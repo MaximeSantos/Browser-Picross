@@ -2,4 +2,7 @@
 	import '../style.css';
 </script>
 
-<slot />
+<div class="container">
+	<h1><a href="/">Browser Picross</a></h1>
+	<slot />
+</div>

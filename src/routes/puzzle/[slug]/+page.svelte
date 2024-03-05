@@ -49,22 +49,18 @@
 	}
 </script>
 
-<div class="container">
-	<h1><a href="/">{isWon ? 'You won !' : 'Browser Picross'}</a></h1>
-	<div class="board">
-		{#await data.puzzle}
-			<p>Loading ...</p>
-		{:then puzzle}
-			<Board
-				{height}
-				{width}
-				{board}
-				{hints}
-				on:mousedown={handleMouseDown}
-				on:mouseover={handleMouseOver}
-			/>
-		{:catch error}
-			<p>Oups, erreur</p>
-		{/await}
-	</div>
-</div>
+{#await data.puzzle}
+	<p>Loading ...</p>
+{:then puzzle}
+	<Board
+		{height}
+		{width}
+		{board}
+		{hints}
+		on:mousedown={handleMouseDown}
+		on:mouseover={handleMouseOver}
+	/>
+{:catch error}
+	<p>Oups, erreur</p>
+{/await}
+<h2>{isWon ? 'You won !' : ''}</h2>
