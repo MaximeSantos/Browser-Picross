@@ -1,12 +1,8 @@
-import { DB_URL } from '$env/static/private';
-import PocketBase from 'pocketbase';
+import type { PageServerLoad } from './$types';
 
-const client = new PocketBase(DB_URL);
-
-/** @type {import('./$types').PageServerLoad} */
-export async function load() {
-	const puzzles = await client.collection('puzzles').getList();
+export const load: PageServerLoad = async ({ locals }) => {
+	const puzzles = await locals.pb?.collection('puzzles').getList();
 	return {
 		puzzles: puzzles
 	};
-}
+};

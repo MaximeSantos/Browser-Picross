@@ -1,19 +1,22 @@
-import { DB_URL } from '$env/static/private';
-import { error } from '@sveltejs/kit';
-import PocketBase from 'pocketbase';
+import { fail } from '@sveltejs/kit';
 
-const client = new PocketBase(DB_URL);
+export const load = async ({ params, locals }) => {
+	try {
+		const puzzle = await locals.pb?.collection('puzzles').getOne(params.slug);
 
-/** @type {import('./$types').PageServerLoad} */
-export async function load({ params }) {
-	const puzzle = await client.collection('puzzles').getOne(params.slug);
-	if (!puzzle) {
-		error(404, {
-			message: 'Not found'
-		});
+		return {
+			puzzle: puzzle
+		};
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	} catch (e: any) {
+		if (e.status >= 400 && e.status <= 500) {
+			return fail(e.status, { error: true, message: 'Not found' });
+		}
+		if (e.status >= 500) {
+			return fail(e.status, {
+				error: true,
+				message: 'Server could not be reached'
+			});
+		}
 	}
-	return {
-		puzzle: puzzle
-	};
-}
-// jbn2twsw3zqfdm1
+};
