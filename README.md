@@ -14,3 +14,5 @@ The app should be clean, minimalist and ergonomic.
 - Be able to export puzzles to certain formats directly to the user's local machine.
 
 - Save users progression (+ time ?) once the catalogue is more complete.
+
+- Allow for keyboard control

@@ -6,6 +6,8 @@
 	export let board: number[];
 	export let hints: { rows: number[][]; cols: number[][] };
 
+	// TODO Show active row/column and cell where the cursor is positioned
+	// TODO Add animations when interacting with a cell
 	// TODO Find a better solution to add the borders (maybe add a dataset or something similar on each cell to help locate their coordinates later on)
 	function accentTop(i: number): boolean {
 		return i > width && (i + 1) % (5 * width) <= width && (i + 1) % (5 * width) > 0;
