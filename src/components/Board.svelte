@@ -37,7 +37,9 @@
 	}
 </script>
 
-<div class="board-container">
+<!-- Disable right clicking on the board -->
+<!-- svelte-ignore a11y-no-static-element-interactions -->
+<div class="board-container" on:contextmenu|preventDefault>
 	<!-- Header Left -->
 	<div class="left-h">
 		{#each hints.rows as hintList, i}
@@ -76,7 +78,6 @@
 				class:accent-r={accentRight(i)}
 				class:accent-b={accentBottom(i)}
 				class:accent-l={accentLeft(i)}
-				on:contextmenu|preventDefault
 				on:mousedown={(e) => mousedown(e, i)}
 				on:mouseover={(e) => mouseover(e, i)}
 				on:focus
