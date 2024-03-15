@@ -16,7 +16,7 @@
 	</div>
 	<button type="submit">Login</button>
 </form>
-<h2>{$page.status}</h2>
+<h2>{$page.status >= 400 ? 'Error, please try again.' : ''}</h2>
 
 <style>
 	.input-container,

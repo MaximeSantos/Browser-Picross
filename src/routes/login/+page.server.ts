@@ -17,7 +17,7 @@ export const actions = {
 		const password = data.get('password')?.toString() || '';
 
 		try {
-			await locals.pb?.admins.authWithPassword(email, password);
+			await locals.pb?.collection('users').authWithPassword(email, password);
 			const isProd = process.env.NODE_ENV === 'production' ? true : false;
 			if (locals.pb?.authStore.isValid) {
 				cookies.set(
