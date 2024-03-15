@@ -19,6 +19,7 @@ export const actions = {
 		try {
 			await locals.pb?.collection('users').authWithPassword(email, password);
 			const isProd = process.env.NODE_ENV === 'production' ? true : false;
+
 			if (locals.pb?.authStore.isValid) {
 				cookies.set(
 					'pb_auth',
@@ -44,7 +45,5 @@ export const actions = {
 				});
 			}
 		}
-
-		// client.admins.authWithPassword(email, password);
 	}
 };
