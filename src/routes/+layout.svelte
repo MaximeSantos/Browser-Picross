@@ -1,12 +1,10 @@
 <script>
+	import Navigation from 'components/Navigation.svelte';
 	import '../style.css';
 </script>
 
 <div class="container">
-	<div>
-		<a href="/admin">Admin</a>
-		<a href="/login">Login</a>
-	</div>
+	<Navigation />
 	<h1><a href="/">Browser Picross</a></h1>
 	<slot />
 </div>
