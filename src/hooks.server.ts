@@ -14,8 +14,6 @@ export const handle: Handle = async ({ event, resolve }) => {
 		event.locals.pb.authStore.clear();
 	}
 
-	console.log(event.locals.pb?.authStore.model);
-
 	if (event.url.pathname.startsWith('/admin')) {
 		if (!event.locals.pb.authStore.isValid || !event.locals.pb?.authStore.model?.staff) {
 			throw redirect(303, '/');

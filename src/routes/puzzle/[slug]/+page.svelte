@@ -2,7 +2,7 @@
 	import type { MouseDownType, MouseOverType } from '$lib/types/types';
 	import type { PageData } from './$types';
 
-	import Board from 'components/Board.svelte';
+	import Puzzle from 'components/Puzzle.svelte';
 
 	import checkWinCondition from '$lib/functions/checkWinCondition';
 	import getAction from '$lib/functions/getAction';
@@ -12,13 +12,13 @@
 
 	// Setting up our variables based on the .non format for now (https://webpbn.com/export.cgi amongst many other possibilities)
 	// -1 is an empty cell / 0 is a crossed cell / 1 is a full cell
-	const width = data.puzzle.width;
-	const height = data.puzzle.height;
+	const width = data.puzzle?.width;
+	const height = data.puzzle?.height;
 	const hints = {
-		rows: data.puzzle.rows,
-		cols: data.puzzle.columns
+		rows: data.puzzle?.rows,
+		cols: data.puzzle?.columns
 	};
-	const solution = data.puzzle.solution;
+	const solution = data.puzzle?.solution;
 	// Initialising a one dimensionnal array to represent our empty board.
 	let board = Array.from({ length: height * width }, () => -1);
 	let startDragOn = 0;
@@ -52,7 +52,7 @@
 {#await data.puzzle}
 	<p>Loading ...</p>
 {:then puzzle}
-	<Board
+	<Puzzle
 		{height}
 		{width}
 		{board}
