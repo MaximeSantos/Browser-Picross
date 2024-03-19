@@ -1,9 +1,11 @@
 import type { LayoutServerLoad } from './$types';
 
 export const load = (async ({ locals }) => {
-	console.log('Layout load function');
-
 	const isLoggedIn = locals.pb?.authStore.isValid || false;
+	const isStaff: boolean = locals.pb?.authStore.model?.staff || false;
 
-	return { isLoggedIn: isLoggedIn };
+	return {
+		isLoggedIn: isLoggedIn,
+		isStaff: isStaff
+	};
 }) satisfies LayoutServerLoad;

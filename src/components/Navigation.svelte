@@ -1,12 +1,22 @@
 <script lang="ts">
 	export let isLoggedIn: boolean;
+	export let isStaff: boolean;
 </script>
 
 <nav>
-	<a href="/admin">Admin</a>
 	{#if isLoggedIn}
+		{#if isStaff}
+			<a href="/admin">Admin</a>
+		{/if}
 		<a href="/logout" data-sveltekit-reload>Logout</a>
 	{:else}
 		<a href="/login">Login</a>
 	{/if}
 </nav>
+
+<style>
+	nav {
+		margin-right: 10rem;
+		margin-left: auto;
+	}
+</style>
