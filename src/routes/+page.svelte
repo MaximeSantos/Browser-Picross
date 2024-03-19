@@ -6,7 +6,13 @@
 
 <h2>Puzzles</h2>
 <div>
-	{#each data.puzzles.items as puzzle}
-		<a href={`/puzzle/${puzzle.id}`}>{puzzle.title}</a>
-	{/each}
+	{#await data.puzzles}
+		<p>Loading ...</p>
+	{:then puzzles}
+		{#if puzzles}
+			{#each puzzles.items as puzzle}
+				<a href={`/puzzle/${puzzle.id}`}>{puzzle.title}</a>
+			{/each}
+		{/if}
+	{/await}
 </div>
