@@ -6,6 +6,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 	event.locals.pb = new PocketBase(DB_URL);
 	event.locals.pb.authStore.loadFromCookie(event.request.headers.get('cookie') || '');
 
+	// Refreshes token if authenticated user
 	try {
 		if (event.locals.pb.authStore.isValid) {
 			await event.locals.pb.collection('users').authRefresh();
@@ -14,6 +15,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 		event.locals.pb.authStore.clear();
 	}
 
+	// When accessing /admin route, redirects to homepage if not a staff user
 	if (event.url.pathname.startsWith('/admin')) {
 		if (!event.locals.pb.authStore.isValid || !event.locals.pb?.authStore.model?.staff) {
 			throw redirect(303, '/');

@@ -19,11 +19,12 @@
 		cols: data.puzzle?.columns
 	};
 	const solution = data.puzzle?.solution;
-	// Initialising a one dimensionnal array to represent our empty board.
+	// Initialising a one dimensionnal array with values -1 to represent our empty board.
 	let board = Array.from({ length: height * width }, () => -1);
 	let startDragOn = 0;
 	let isWon = false;
 
+	// Checks win condition every time the board refreshes
 	$: if (checkWinCondition(board, solution)) {
 		isWon = true;
 	} else {
@@ -51,7 +52,7 @@
 
 {#await data.puzzle}
 	<p>Loading ...</p>
-{:then puzzle}
+{:then}
 	<Puzzle
 		{height}
 		{width}
@@ -62,5 +63,6 @@
 	/>
 {:catch error}
 	<p>Oups, erreur</p>
+	<p>{error}</p>
 {/await}
 <h2>{isWon ? 'You won !' : ''}</h2>
