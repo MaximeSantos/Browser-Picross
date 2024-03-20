@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
+	import getAction from '$lib/functions/getAction';
+	import getNextCellStateOnMouseOver from '$lib/functions/getNextCellStateOnMouseOver';
 
 	// import Board from './Board.svelte';
 	import HintsLeft from './HintsLeft.svelte';
@@ -8,7 +9,28 @@
 	export let height: number;
 	export let width: number;
 	export let board: number[];
+	export let isWon: boolean;
 	export let hints: { rows: number[][]; cols: number[][] };
+
+	let startDragOn = 0;
+
+	function handleMouseDown(e: MouseEvent, i: number) {
+		if (!isWon) {
+			startDragOn = board[i];
+			// Convert our button press to our expected result in our custom .non format
+			// Left Click get 1 / Right Click get 0 / Middle Click get -1
+			let action = getAction('mousedown', e.button);
+			if (action != null) {
+				board[i] = action == board[i] ? -1 : action;
+			}
+		}
+	}
+	function handleMouseOver(e: MouseEvent, i: number) {
+		if (!isWon) {
+			let action = getAction('mouseover', e.buttons);
+			board[i] = getNextCellStateOnMouseOver(action, board[i], startDragOn);
+		}
+	}
 
 	// TODO Show active row/column and cell where the cursor is positioned
 	// TODO Add animations when interacting with a cell
@@ -30,14 +52,6 @@
 	}
 	function accentLeft(i: number): boolean {
 		return i % width !== 0 && (i % width) % 5 === 0;
-	}
-
-	const dispatch = createEventDispatcher();
-	function mousedown(e: MouseEvent, i: number) {
-		dispatch('mousedown', { button: e.button, index: i });
-	}
-	function mouseover(e: MouseEvent, i: number) {
-		dispatch('mouseover', { buttons: e.buttons, index: i });
 	}
 </script>
 
@@ -62,8 +76,8 @@
 				class:accent-r={accentRight(i)}
 				class:accent-b={accentBottom(i)}
 				class:accent-l={accentLeft(i)}
-				on:mousedown={(e) => mousedown(e, i)}
-				on:mouseover={(e) => mouseover(e, i)}
+				on:mousedown={(e) => handleMouseDown(e, i)}
+				on:mouseover={(e) => handleMouseOver(e, i)}
 				on:focus
 				type="button"
 				tabindex="0"

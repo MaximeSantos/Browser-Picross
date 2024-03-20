@@ -1,12 +1,9 @@
 <script lang="ts">
-	import type { MouseDownType, MouseOverType } from '$lib/types/types';
 	import type { PageData } from './$types';
 
 	import Puzzle from 'components/Puzzle.svelte';
 
 	import checkWinCondition from '$lib/functions/checkWinCondition';
-	import getAction from '$lib/functions/getAction';
-	import getNextCellStateOnMouseOver from '$lib/functions/getNextCellStateOnMouseOver';
 
 	export let data: PageData;
 
@@ -21,7 +18,6 @@
 	const solution = data.puzzle?.solution;
 	// Initialising a one dimensionnal array with values -1 to represent our empty board.
 	let board = Array.from({ length: height * width }, () => -1);
-	let startDragOn = 0;
 	let isWon = false;
 
 	// Checks win condition every time the board refreshes
@@ -30,37 +26,12 @@
 	} else {
 		isWon = false;
 	}
-
-	function handleMouseDown({ detail }: CustomEvent<MouseDownType>) {
-		if (!isWon) {
-			startDragOn = board[detail.index];
-			// Convert our button press to our expected result in our custom .non format
-			// Left Click get 1 / Right Click get 0 / Middle Click get -1
-			let action = getAction('mousedown', detail.button);
-			if (action != null) {
-				board[detail.index] = action == board[detail.index] ? -1 : action;
-			}
-		}
-	}
-	function handleMouseOver({ detail }: CustomEvent<MouseOverType>) {
-		if (!isWon) {
-			let action = getAction('mouseover', detail.buttons);
-			board[detail.index] = getNextCellStateOnMouseOver(action, board[detail.index], startDragOn);
-		}
-	}
 </script>
 
 {#await data.puzzle}
 	<p>Loading ...</p>
 {:then}
-	<Puzzle
-		{height}
-		{width}
-		{board}
-		{hints}
-		on:mousedown={handleMouseDown}
-		on:mouseover={handleMouseOver}
-	/>
+	<Puzzle {height} {width} {hints} {isWon} bind:board />
 {:catch error}
 	<p>Oups, erreur</p>
 	<p>{error}</p>
