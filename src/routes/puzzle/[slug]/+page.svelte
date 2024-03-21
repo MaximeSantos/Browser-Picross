@@ -31,7 +31,7 @@
 {#await data.puzzle}
 	<p>Loading ...</p>
 {:then}
-	<Puzzle {height} {width} {hints} {isWon} bind:board />
+	<Puzzle {height} {width} {hints} bind:isWon bind:board />
 {:catch error}
 	<p>Oups, erreur</p>
 	<p>{error}</p>
