@@ -1,27 +1,39 @@
 <script lang="ts">
 </script>
 
-<form>
-	<div>
+<form method="POST">
+	<div class="input-container">
 		<label for="title">
 			Title
 			<input type="title" name="title" required aria-required="true" />
 		</label>
-		<label for="author">
-			Author
-			<input type="author" name="author" required aria-required="true" />
+		<label for="description">
+			Description
+			<input type="description" name="description" aria-required="false" />
 		</label>
-		<label for="copyright">
-			Copyright
-			<input type="copyright" name="copyright" required aria-required="true" />
-		</label>
-		<label for="licence">
-			Licence
-			<input type="licence" name="licence" required aria-required="true" />
-		</label>
-		<!-- Width and height should be pre-determined by a preceding form ? -->
-		<!-- Rows hints / Columns hints / Solution should be based on the state of the puzzle when the first form is submitted -->
-		<!-- Store those values in a global state ? -->
 	</div>
-	<button type="submit">Submit Puzzle</button>
+	<div>
+		<button type="submit">Confirm</button>
+	</div>
 </form>
+
+<style>
+	form,
+	.input-container {
+		display: flex;
+		flex-direction: column;
+	}
+	form {
+		align-items: center;
+	}
+	.input-container {
+		align-items: flex-end;
+	}
+	button {
+		margin-top: 2rem;
+	}
+
+	label {
+		padding: 0.5rem;
+	}
+</style>
