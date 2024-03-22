@@ -1,8 +1,10 @@
 <script lang="ts">
-	import { page } from '$app/stores';
+	import type { ActionData } from './$types';
+
+	export let form: ActionData;
 </script>
 
-<h2>Login Admin</h2>
+<h2>Login</h2>
 <form method="POST">
 	<div class="input-container">
 		<label for="email">
@@ -15,8 +17,13 @@
 		</label>
 	</div>
 	<button type="submit">Login</button>
+	{#if form?.success}
+		<p>{form.message}</p>
+	{/if}
+	{#if form?.error}
+		<p>{form.message}</p>
+	{/if}
 </form>
-<h2>{$page.status >= 400 ? 'Error, please try again.' : ''}</h2>
 
 <style>
 	.input-container,

@@ -26,7 +26,7 @@ export const actions = {
 					locals.pb?.authStore.exportToCookie({ secure: isProd, sameSite: 'lax', httpOnly: true }),
 					{ path: '/' }
 				);
-				return { success: true };
+				return { success: true, message: 'Authentication successful' };
 			}
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		} catch (e: any) {
