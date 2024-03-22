@@ -16,7 +16,10 @@
 
 <style>
 	nav {
-		margin-right: 10rem;
+		margin-right: 2dvw;
 		margin-left: auto;
+	}
+	a {
+		padding-left: 2rem;
 	}
 </style>
