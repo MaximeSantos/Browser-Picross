@@ -6,10 +6,7 @@
 	let showModal = false;
 	let height = 5;
 	let width = 5;
-	// Initialising a one dimensionnal array with values -1 to represent our empty board.
-	let board = Array.from({ length: height * width }, () => -1);
-
-	const isWon = false;
+	let board = Array.from({ length: height * width }, () => -1); // Initialising an array of values -1 to represent our empty board.
 </script>
 
 <h2>Admin Page</h2>
@@ -19,7 +16,7 @@
 		<input type="number" bind:value={height} min="5" max="50" />
 		<input type="number" bind:value={width} min="5" max="50" />
 	</div> -->
-	<Board bind:board {height} {width} {isWon} />
+	<Board bind:board {height} {width} />
 	<button on:click={() => (showModal = true)}>Submit Picross</button>
 </div>
 

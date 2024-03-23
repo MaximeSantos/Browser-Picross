@@ -5,7 +5,7 @@
 	export let board: number[];
 	export let height: number;
 	export let width: number;
-	export let isWon: boolean;
+	export let isWon: boolean = false; // Initialised to false when no props given
 
 	let startDragOn = 0;
 
