@@ -1,9 +1,9 @@
 <script lang="ts">
-	export let hints: { rows: number[][]; cols: number[][] };
+	export let hints: { rows: number[][]; columns: number[][] };
 </script>
 
 <div class="top-h">
-	{#each hints.cols as hintList, i}
+	{#each hints.columns as hintList, i}
 		<div class="hint-container" class:bg-light={i % 2}>
 			{#each hintList as hint}
 				<div class="hint">

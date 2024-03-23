@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let hints: { rows: number[][]; cols: number[][] };
+	export let hints: { rows: number[][]; columns: number[][] };
 </script>
 
 <div class="left-h">

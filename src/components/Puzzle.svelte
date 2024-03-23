@@ -7,7 +7,7 @@
 	export let width: number;
 	export let board: number[];
 	export let isWon: boolean;
-	export let hints: { rows: number[][]; cols: number[][] };
+	export let hints: { rows: number[][]; columns: number[][] };
 </script>
 
 <!-- Disable right clicking on the board -->

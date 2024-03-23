@@ -13,7 +13,7 @@
 	const height = data.puzzle?.height;
 	const hints = {
 		rows: data.puzzle?.rows,
-		cols: data.puzzle?.columns
+		columns: data.puzzle?.columns
 	};
 	const solution = data.puzzle?.solution;
 	// Initialising a one dimensionnal array with values -1 to represent our empty board.
