@@ -6,7 +6,7 @@
 	let showModal = false;
 	let height = 5;
 	let width = 5;
-	let board = Array.from({ length: height * width }, () => -1); // Initialising an array of values -1 to represent our empty board.
+	let board = Array.from({ length: height * width }, () => 0); // Initialising an array of values -1 to represent our empty board.
 </script>
 
 <h2>Admin Page</h2>

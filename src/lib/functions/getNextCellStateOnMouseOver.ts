@@ -15,11 +15,11 @@ export default function getNextCellStateOnMouseOver(
 		if (action == startDragOn) {
 			// Delete mode : we only execute on cells of the same type as startDragOn, our output is alway -1
 			if (curCell == startDragOn) {
-				return -1;
+				return 0;
 			}
 		} else {
 			// Write mode : we only execute on empty cells or on the same cell type we started dragging on, our output is always our action
-			if (curCell == -1 || curCell == startDragOn) {
+			if (curCell == 0 || curCell == startDragOn) {
 				return action;
 			}
 		}

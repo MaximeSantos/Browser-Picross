@@ -16,7 +16,7 @@
 			// Left Click get 1 / Right Click get 0 / Middle Click get -1
 			let action = getAction('mousedown', e.button);
 			if (action != null) {
-				board[i] = action == board[i] ? -1 : action;
+				board[i] = action == board[i] ? 0 : action;
 			}
 		}
 	}
@@ -26,6 +26,8 @@
 			board[i] = getNextCellStateOnMouseOver(action, board[i], startDragOn);
 		}
 	}
+
+	// TODO Must prevent right clicking (crossing cells) when on admin page
 
 	// TODO Show active row/column and cell where the cursor is positioned
 	// TODO Add animations when interacting with a cell
@@ -55,8 +57,8 @@
 		<!-- Probably many ways to improve on the accent class conditons -->
 		<button
 			class="cell"
-			class:crossed={cell == 0}
-			class:full={cell == 1}
+			class:crossed={cell === -1}
+			class:full={cell === 1}
 			class:accent-t={accentTop(i)}
 			class:accent-r={accentRight(i)}
 			class:accent-b={accentBottom(i)}
