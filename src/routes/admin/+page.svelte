@@ -21,7 +21,7 @@
 </div>
 
 <Modal bind:showModal>
-	<SubmitPuzzleForm />
+	<SubmitPuzzleForm {board} {height} {width} />
 </Modal>
 
 <style>

@@ -1,7 +1,19 @@
 <script lang="ts">
+	import { enhance } from '$app/forms';
+
+	export let height: number;
+	export let width: number;
+	export let board: number[];
 </script>
 
-<form method="POST">
+<form
+	method="POST"
+	use:enhance={({ formData }) => {
+		formData.append('height', height.toString());
+		formData.append('width', width.toString());
+		formData.append('board', JSON.stringify(board));
+	}}
+>
 	<div class="input-container">
 		<label for="title">
 			Title
