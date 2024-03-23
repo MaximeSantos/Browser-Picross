@@ -83,6 +83,7 @@
 		height: 100%;
 		padding: 0;
 		border: 1px solid var(--dark);
+		background-color: var(--light-dark);
 	}
 	.cell.accent-t {
 		border-top: 1px solid var(--border-light);

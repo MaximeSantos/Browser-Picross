@@ -8,7 +8,7 @@
 </script>
 
 <div class="container">
-	<Navigation isStaff={data.isStaff} isLoggedIn={data.isLoggedIn} />
+	<Navigation isStaff={data.isStaff} isLoggedIn={data.isLoggedIn} username={data.username} />
 	<h1><a href="/">Browser Picross</a></h1>
 	<slot />
 </div>

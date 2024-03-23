@@ -10,6 +10,7 @@
   --full-cross-light: #ccc;
   --text-light: #fbfbfb;
   --dark: #1c1b22;
+  --light-dark: #2B2A33;
 }
 
 a {
@@ -19,6 +20,7 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
 
 .container {
   display: flex;

@@ -31,6 +31,13 @@
 		margin-bottom: 2rem;
 	} */
 	button {
-		margin-top: 2rem;
+		margin: 1rem;
+		padding: 0.4rem 0.5rem;
+		border: 1px solid var(--border-light);
+		border-radius: 0.2rem;
+	}
+	button:hover {
+		background-color: var(--border-light);
+		text-decoration: none;
 	}
 </style>
