@@ -1,4 +1,8 @@
 <script lang="ts">
+	import type { ActionData } from './$types';
+
+	export let form: ActionData;
+
 	import Board from 'components/Board.svelte';
 	import Modal from 'components/Modal.svelte';
 	import SubmitPuzzleForm from 'components/SubmitPuzzleForm.svelte';
@@ -18,6 +22,13 @@
 	</div> -->
 	<Board bind:board {height} {width} />
 	<button on:click={() => (showModal = true)}>Submit Picross</button>
+
+	{#if form?.success}
+		<p>{form.message}</p>
+	{/if}
+	{#if form?.error || form?.missing}
+		<p>{form.message}</p>
+	{/if}
 </div>
 
 <Modal bind:showModal>

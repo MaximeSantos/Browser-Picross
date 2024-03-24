@@ -25,6 +25,7 @@
 		</label>
 	</div>
 	<div>
+		<!-- <button type="reset" on:click={}>Cancel</button> -->
 		<button type="submit">Confirm</button>
 	</div>
 </form>
