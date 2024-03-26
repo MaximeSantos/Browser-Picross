@@ -25,6 +25,7 @@ export const actions = {
 
 		// TODO Sanitize the inputs
 		// Validation for empty / missing values
+		// TODO ERROR Doesnt go through validation
 		if (!title) {
 			return fail(400, { missing: true, message: 'Missing title.' });
 		}
