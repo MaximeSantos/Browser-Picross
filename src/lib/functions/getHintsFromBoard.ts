@@ -16,8 +16,9 @@ export default function getHintsFromBoard(
 
 	// Transforms 1D array into 2D array
 	const twoDimensionalBoard = [];
-	while (board.length) {
-		twoDimensionalBoard.push(board.splice(0, width));
+	const copyBoard = [...board];
+	while (copyBoard.length) {
+		twoDimensionalBoard.push(copyBoard.splice(0, width));
 	}
 
 	// Getting hints for the rows
