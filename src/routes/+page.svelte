@@ -16,3 +16,10 @@
 		{/if}
 	{/await}
 </div>
+
+<style>
+	div {
+		display: flex;
+		flex-direction: column;
+	}
+</style>
