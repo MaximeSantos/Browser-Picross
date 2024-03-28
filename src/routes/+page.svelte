@@ -10,9 +10,13 @@
 		<p>Loading ...</p>
 	{:then puzzles}
 		{#if puzzles}
-			{#each puzzles.items as puzzle}
-				<a href={`/puzzle/${puzzle.id}`}>{puzzle.title}</a>
-			{/each}
+			<ul>
+				{#each puzzles.items as puzzle}
+					<li>
+						<a href={`/puzzle/${puzzle.id}`}>{puzzle.title}</a>
+					</li>
+				{/each}
+			</ul>
 		{/if}
 	{/await}
 </div>

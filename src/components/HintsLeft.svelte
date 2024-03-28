@@ -46,6 +46,6 @@
 	}
 	.hint {
 		width: 1rem;
-		height: 1rem;
+		margin-top: 0.5em;
 	}
 </style>

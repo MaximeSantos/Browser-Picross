@@ -42,9 +42,7 @@
 		justify-content: flex-end;
 		height: var(--col-height);
 		width: var(--hint-length-size);
-	}
-	.hint {
-		width: 1rem;
-		height: 1rem;
+		margin: 0;
+		border: 0;
 	}
 </style>
