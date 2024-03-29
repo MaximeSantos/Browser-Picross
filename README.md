@@ -5,12 +5,13 @@ Just having fun creating a Picross/Nonogram app in the browser as a good opportu
 https://en.wikipedia.org/wiki/Nonogram
 
 The goal is for the app to have a small, probably mostly handmade, catalogue of puzzles for everyone to enjoy.
-Admins should have the ability to create and store new puzzles directly from the app, as well as manage how they are catalogued/sorted on the website.
+Registered users should have the ability to create new puzzles.
+Admins should have the ability to manage how they are catalogued/sorted on the website.
 
 ## Some ideas :
 
 - Be able to export puzzles to certain formats directly to the user's local machine.
 
-- Save users progression (which puzzle has been completed as well as the time it took to do so ?) once the catalogue is more complete.
+- Save users progression/history.
 
-- Allow for keyboard control
+- Allow for keyboard control on the gameboard.
