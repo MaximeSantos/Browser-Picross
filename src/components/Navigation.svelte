@@ -7,6 +7,7 @@
 <div class="nav-container">
 	<nav>
 		<a class="route" href="/">Home</a>
+		<span>/</span>
 		{#if isLoggedIn && isStaff}
 			<a class="route" href="/admin">Admin</a>
 		{/if}
@@ -32,10 +33,12 @@
 	}
 	.container {
 		flex-direction: row;
+		margin-right: 1rem;
 	}
 	nav {
 		display: flex;
 		align-items: center;
+		margin-left: 1rem;
 	}
 	.login-logout {
 		margin-left: 2rem;
@@ -47,5 +50,9 @@
 	.login-logout:hover {
 		background-color: var(--border-light);
 		text-decoration: none;
+	}
+
+	span {
+		margin: 0 1rem;
 	}
 </style>
