@@ -8,7 +8,18 @@
 </script>
 
 <div class="container">
-	<Navigation isStaff={data.isStaff} isLoggedIn={data.isLoggedIn} username={data.username} />
+	<Navigation
+		isStaff={data.isStaff}
+		isLoggedIn={data.isLoggedIn}
+		username={data.username}
+		route={data.route}
+	/>
 	<h1><a href="/">Browser Picross</a></h1>
 	<slot />
 </div>
+
+<style>
+	.container {
+		margin-top: 0.5rem;
+	}
+</style>
