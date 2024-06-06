@@ -6,19 +6,19 @@
 
 <h2>Puzzles</h2>
 <div>
-	{#await data.puzzles}
-		<p>Loading ...</p>
-	{:then puzzles}
-		{#if puzzles}
-			<ul>
-				{#each puzzles.items as puzzle}
-					<li>
-						<a href={`/puzzle/${puzzle.id}`}>{puzzle.title}</a>
-					</li>
-				{/each}
-			</ul>
-		{/if}
-	{/await}
+	{#if data.puzzles && data.puzzles.items.length > 0}
+		<ul>
+			{#each data.puzzles.items as puzzle}
+				<li>
+					<a href={`/puzzle/${puzzle.id}`}>{puzzle.title}</a>
+				</li>
+			{/each}
+		</ul>
+	{:else if data.puzzles && data.puzzles.items.length === 0}
+		<p>No puzzles available</p>
+	{:else}
+		<p>Something went wrong</p>
+	{/if}
 </div>
 
 <style>

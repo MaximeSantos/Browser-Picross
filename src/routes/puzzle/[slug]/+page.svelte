@@ -28,12 +28,9 @@
 	}
 </script>
 
-{#await data.puzzle}
-	<p>Loading ...</p>
-{:then}
+{#if data.puzzle}
 	<Puzzle {height} {width} {hints} bind:isWon bind:board />
-{:catch error}
-	<p>Oups, erreur</p>
-	<p>{error}</p>
-{/await}
+{:else}
+	<p>Something went wrong</p>
+{/if}
 <h2>{isWon ? 'You won !' : ''}</h2>
