@@ -14,12 +14,8 @@
 		username={data.username}
 		route={data.route}
 	/>
-	<h1><a href="/">Browser Picross</a></h1>
 	<slot />
 </div>
 
 <style>
-	.container {
-		margin-top: 0.5rem;
-	}
 </style>
