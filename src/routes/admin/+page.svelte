@@ -3,11 +3,9 @@
 
 	export let form: ActionData;
 
+	import { enhance } from '$app/forms';
 	import Board from 'components/Board.svelte';
-	import Modal from 'components/Modal.svelte';
-	import SubmitPuzzleForm from 'components/SubmitPuzzleForm.svelte';
 
-	let showModal = false;
 	let height = 5;
 	let width = 5;
 	let board = Array.from({ length: height * width }, () => 0); // Initialising an array of values -1 to represent our empty board.
@@ -21,7 +19,32 @@
 		<input type="number" bind:value={width} min="5" max="50" />
 	</div> -->
 	<Board bind:board {height} {width} />
-	<button on:click={() => (showModal = true)}>Submit Picross</button>
+
+	<form
+		method="POST"
+		use:enhance={({ formData }) => {
+			formData.append('height', height.toString());
+			formData.append('width', width.toString());
+			formData.append('board', JSON.stringify(board));
+		}}
+	>
+		<div class="input-container">
+			<input type="title" name="title" required aria-required="true" placeholder="Title" />
+			<input
+				type="description"
+				name="description"
+				aria-required="false"
+				placeholder="Description"
+			/>
+		</div>
+		<div class="button-container">
+			<button
+				type="reset"
+				on:click={() => (board = Array.from({ length: height * width }, () => 0))}>Reset</button
+			>
+			<button type="submit">Submit Puzzle</button>
+		</div>
+	</form>
 
 	{#if form?.success}
 		<p>{form.message}</p>
@@ -31,16 +54,11 @@
 	{/if}
 </div>
 
-<Modal bind:showModal>
-	<SubmitPuzzleForm {board} {height} {width} />
-</Modal>
+<!-- <Modal bind:showModal> -->
+<!-- 	<SubmitPuzzleForm {board} {height} {width} /> -->
+<!-- </Modal> -->
 
 <style>
-	/* .board-settings {
-		display: flex;
-		flex-direction: column;
-		margin-bottom: 2rem;
-	} */
 	button {
 		margin: 1rem;
 		padding: 0.4rem 0.5rem;
@@ -50,5 +68,27 @@
 	button:hover {
 		background-color: var(--border-light);
 		text-decoration: none;
+	}
+
+	form,
+	.input-container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	input {
+		margin: 0.5rem;
+	}
+
+	.button-container {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		padding: 0.5rem;
+	}
+
+	button {
+		margin: 0;
 	}
 </style>
