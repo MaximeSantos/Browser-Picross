@@ -26,6 +26,8 @@
 	} else {
 		isWon = false;
 	}
+
+	/* TODO: Go to next puzzle instead of back to list of puzzles */
 </script>
 
 {#if data.puzzle}
@@ -33,4 +35,7 @@
 {:else}
 	<p>Something went wrong</p>
 {/if}
-<h2>{isWon ? 'You won !' : ''}</h2>
+{#if isWon}
+	<h2>You won !</h2>
+	<a href="/">Go back to the list of Puzzles</a>
+{/if}
