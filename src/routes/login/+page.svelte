@@ -5,18 +5,15 @@
 </script>
 
 <h2>Login</h2>
+<p>You will need to login to submit your own puzzle.</p>
+<p>In the future, logging in will allow your progression to be saved too.</p>
+
 <form method="POST">
 	<div class="input-container">
-		<label for="email">
-			EMAIL
-			<input type="email" name="email" required aria-required="true" />
-		</label>
-		<label for="password">
-			PASSWORD
-			<input type="password" name="password" required aria-required="true" />
-		</label>
+		<input type="email" name="email" required aria-required="true" placeholder="Email" />
+		<input type="password" name="password" required aria-required="true" placeholder="Password" />
 	</div>
-	<button type="submit">Login</button>
+	<button type="submit">Confirm</button>
 	{#if form?.success}
 		<p>{form.message}</p>
 	{/if}

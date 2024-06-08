@@ -22,6 +22,13 @@ export const handle: Handle = async ({ event, resolve }) => {
 		}
 	}
 
+	// When accessing /create route, redirects to login if not logged in
+	if (event.url.pathname.startsWith('/submit')) {
+		if (!event.locals.pb.authStore.isValid) {
+			throw redirect(303, '/login');
+		}
+	}
+
 	const response = await resolve(event);
 
 	const isProd = process.env.NODE_ENV === 'production' ? true : false;

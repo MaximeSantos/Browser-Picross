@@ -10,6 +10,8 @@
 <div class="header">
 	<nav class="left">
 		<a class="route" class:active={route === '/'} href="/">Home</a>
+		<span>/</span>
+		<a class="route" class:active={route === '/submit'} href="/submit">Submit</a>
 		{#if isLoggedIn && isStaff}
 			<span>/</span>
 			<a class="route" class:active={route === '/admin'} href="/admin">Admin</a>
