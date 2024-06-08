@@ -4,6 +4,7 @@
 	import Puzzle from 'components/Puzzle.svelte';
 
 	import checkWinCondition from '$lib/functions/checkWinCondition';
+	import resetBoard from '$lib/functions/resetBoard';
 
 	export let data: PageData;
 
@@ -17,7 +18,7 @@
 	};
 	const solution = data.puzzle?.solution;
 	// Initialising a one dimensionnal array with values 0 to represent our empty board.
-	let board = Array.from({ length: height * width }, () => 0);
+	let board = resetBoard(height, width);
 	let isWon = false;
 
 	// Checks win condition every time the board refreshes

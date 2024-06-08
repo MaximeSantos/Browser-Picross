@@ -3,12 +3,16 @@
 
 	export let form: ActionData;
 
+	import resetBoard from '$lib/functions/resetBoard';
 	import { enhance } from '$app/forms';
 	import Board from 'components/Board.svelte';
 
 	let height = 5;
 	let width = 5;
-	let board = Array.from({ length: height * width }, () => 0); // Initialising an array of values -1 to represent our empty board.
+	let board = resetBoard(height, width); // Initialising an array of values -1 to represent our empty board.
+
+	// TODO: User can spam submit to submit the same puzzle multiple time
+	// TODO: Prevent submitting multiple puzzles with the same name
 </script>
 
 <h2>Submit your puzzle</h2>
@@ -29,7 +33,7 @@
 
 			return async ({ result, update }) => {
 				if (result.type === 'success') {
-					board = Array.from({ length: height * width }, () => 0);
+					board = resetBoard(height, width);
 					update();
 				}
 			};
@@ -45,10 +49,7 @@
 			/>
 		</div>
 		<div class="button-container">
-			<button
-				type="reset"
-				on:click={() => (board = Array.from({ length: height * width }, () => 0))}>Reset</button
-			>
+			<button type="reset" on:click={() => (board = resetBoard(height, width))}>Reset</button>
 			<button type="submit">Submit Puzzle</button>
 		</div>
 	</form>
