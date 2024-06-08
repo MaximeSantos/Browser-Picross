@@ -26,6 +26,13 @@
 			formData.append('height', height.toString());
 			formData.append('width', width.toString());
 			formData.append('board', JSON.stringify(board));
+
+			return async ({ result, update }) => {
+				if (result.type === 'success') {
+					board = Array.from({ length: height * width }, () => 0);
+					update();
+				}
+			};
 		}}
 	>
 		<div class="input-container">
