@@ -22,6 +22,7 @@ time, mark, audio, video {
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
+	font-family: monospace;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
@@ -68,7 +69,7 @@ html {
 }
 
 h1 {
-	font-size: 2em;
+	font-size: 2.5em;
 	margin: 0.67em 0;
 }
 h2 {
@@ -94,6 +95,16 @@ h4,
 h5,
 h6 {
 	font-weight: bolder;
+}
+
+a,
+p {
+	font-size: 1.2em;
+}
+
+input,
+button {
+	font-size: 1em;
 }
 
 a {

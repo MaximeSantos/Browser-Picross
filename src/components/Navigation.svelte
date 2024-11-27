@@ -21,12 +21,16 @@
 			<a class="route" href="/logout" data-sveltekit-reload>Logout</a>
 		{:else}
 			<span>/</span>
-			<a class="route" href="/login">Login</a>
+			<a class="route" class:active={route === '/login'} href="/login">Login</a>
 		{/if}
+		<span>/</span>
+		<a
+			class="route"
+			href="https://en.wikipedia.org/wiki/Nonogram#Solution_techniques"
+			target="_blank">How to play</a
+		>
 	</nav>
-	<div>
-		<h1><a href="/">Browser Picross</a></h1>
-	</div>
+	<h1><a href="/">Browser Picross</a></h1>
 	<div class="right">
 		{#if isLoggedIn && username}
 			<p>Hello {username}</p>
@@ -46,6 +50,7 @@
 		align-items: center;
 		width: 100%;
 		padding-bottom: 2rem;
+		margin: 1.5rem;
 	}
 
 	.left {
@@ -63,5 +68,8 @@
 
 	h1 {
 		margin: 0;
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
 	}
 </style>

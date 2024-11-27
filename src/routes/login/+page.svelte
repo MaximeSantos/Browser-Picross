@@ -5,7 +5,8 @@
 </script>
 
 <h2>Login</h2>
-<p>You will need to login to submit your own puzzle.</p>
+<p>No account creation allowed yet.</p>
+<p>You will need to login in order to submit your own puzzle.</p>
 <p>In the future, logging in will allow your progression to be saved too.</p>
 
 <form method="POST">
