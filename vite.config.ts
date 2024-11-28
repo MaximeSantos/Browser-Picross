@@ -6,9 +6,7 @@ export default defineConfig({
 	server: {
 		cors: {
 			origin: process.env.VITE_ALLOWED_ORIGIN,
-			methods: ['GET'],
-			allowedHeaders: ['Content-Type'],
-			credentials: true
+			methods: ['GET']
 		}
 	}
 });
