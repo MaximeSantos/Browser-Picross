@@ -4,6 +4,7 @@
 	import { enhance } from '$app/forms';
 	import resetBoard from '$lib/functions/resetBoard';
 	import Board from 'components/Board.svelte';
+	import { page } from '$app/stores';
 
 	export let form: ActionData;
 
@@ -35,7 +36,8 @@
 				if (result.type === 'success') {
 					board = resetBoard(height, width);
 					update();
-				} else if (result.type === 'failure' || result.type === 'error') {
+				} else if (result.type === 'failure') {
+					update();
 				}
 			};
 		}}
@@ -54,7 +56,6 @@
 			<button type="submit">Submit Puzzle</button>
 		</div>
 	</form>
-
 	{#if form?.success}
 		<p>{form.message}</p>
 	{/if}

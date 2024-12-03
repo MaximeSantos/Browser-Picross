@@ -19,17 +19,15 @@ export const actions = {
 		const parsedWidth = parseInt(width || '');
 
 		// TODO Sanitize the inputs
-		// Validation for empty / missing values
-		// TODO ERROR Doesnt go through validation
+		// TODO Check for unique Title & Solution
 
+		// Validation for empty / missing values
 		if (!parsedBoard) {
 			return fail(400, { missing: true, message: 'Cannot submit an empty board.' });
 		}
-
 		if (!title) {
 			return fail(400, { missing: true, message: 'Missing title.' });
 		}
-
 		if (!height || !width || parseInt(height) * parseInt(width) !== parsedBoard.length) {
 			return fail(400, {
 				missing: true,
