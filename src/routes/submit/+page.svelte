@@ -1,11 +1,11 @@
 <script lang="ts">
 	import type { ActionData } from './$types';
 
-	export let form: ActionData;
-
-	import resetBoard from '$lib/functions/resetBoard';
 	import { enhance } from '$app/forms';
+	import resetBoard from '$lib/functions/resetBoard';
 	import Board from 'components/Board.svelte';
+
+	export let form: ActionData;
 
 	let height = 5;
 	let width = 5;
@@ -35,6 +35,7 @@
 				if (result.type === 'success') {
 					board = resetBoard(height, width);
 					update();
+				} else if (result.type === 'failure' || result.type === 'error') {
 				}
 			};
 		}}
@@ -98,5 +99,6 @@
 
 	button {
 		margin: 0;
+		margin-bottom: 1rem;
 	}
 </style>

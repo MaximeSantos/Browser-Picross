@@ -5,6 +5,7 @@
 
 	import checkWinCondition from '$lib/functions/checkWinCondition';
 	import resetBoard from '$lib/functions/resetBoard';
+	import getHintsFromBoard from '$lib/functions/getHintsFromBoard';
 
 	export let data: PageData;
 
@@ -12,11 +13,9 @@
 	// -1 is an crossed cell / 0 is an empty cell / 1 is a full cell
 	const width = data.puzzle?.width;
 	const height = data.puzzle?.height;
-	const hints = {
-		rows: data.puzzle?.rows,
-		columns: data.puzzle?.columns
-	};
 	const solution = data.puzzle?.solution;
+	// Generates the propers hints from the solution
+	const hints = getHintsFromBoard(data.puzzle?.solution, data.puzzle?.height, data.puzzle?.width);
 	// Initialising a one dimensionnal array with values 0 to represent our empty board.
 	let board = resetBoard(height, width);
 	let isWon = false;
