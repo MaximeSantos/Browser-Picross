@@ -127,6 +127,7 @@
 		transform: rotate(45deg);
 	}
 	.cell:hover {
-		background-color: var(--border-light);
+		border-width: 2px;
+		border-color: var(--border-light);
 	}
 </style>
