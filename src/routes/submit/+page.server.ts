@@ -51,7 +51,12 @@ export const actions = {
 				description
 			});
 
-			return { record, success: true, message: 'Puzzle successfully submitted.' };
+			return {
+				record,
+				success: true,
+				message:
+					'Puzzle successfully submitted. An admin will now review it before it becomes visible to other users.'
+			};
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		} catch (e: any) {
 			// Catches errors relative to unique values for the puzzles (title and solution)

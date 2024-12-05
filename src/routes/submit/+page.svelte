@@ -4,16 +4,12 @@
 	import { enhance } from '$app/forms';
 	import resetBoard from '$lib/functions/resetBoard';
 	import Board from 'components/Board.svelte';
-	import { page } from '$app/stores';
 
 	export let form: ActionData;
 
 	let height = 5;
 	let width = 5;
 	let board = resetBoard(height, width); // Initialising an array of values -1 to represent our empty board.
-
-	// TODO: User can spam submit to submit the same puzzle multiple time
-	// TODO: Prevent submitting multiple puzzles with the same name
 </script>
 
 <h2>Submit your puzzle</h2>

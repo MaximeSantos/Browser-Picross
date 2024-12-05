@@ -9,9 +9,11 @@
 	{#if data.puzzles && data.puzzles.items.length > 0}
 		<ul>
 			{#each data.puzzles.items as puzzle}
-				<li>
-					<a href={`/puzzle/${puzzle.id}`}>{puzzle.title}</a>
-				</li>
+				{#if puzzle.show || puzzle.author == data.username}
+					<li>
+						<a href={`/puzzle/${puzzle.id}`}>{puzzle.title}</a>
+					</li>
+				{/if}
 			{/each}
 		</ul>
 	{:else if data.puzzles && data.puzzles.items.length === 0}
