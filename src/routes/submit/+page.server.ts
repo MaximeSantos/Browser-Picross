@@ -19,7 +19,7 @@ export const actions = {
 		const parsedWidth = parseInt(width || '');
 
 		// TODO Sanitize the inputs
-		// TODO Check for unique Title & Solution
+		// TODO When we allow for more custom size boards, we might have to allow non-unique solutions and check for uniqueness differently because one solution might look differently depending on the board size and shape
 
 		// Validation for empty / missing values
 		if (!parsedBoard) {
@@ -54,6 +54,21 @@ export const actions = {
 			return { record, success: true, message: 'Puzzle successfully submitted.' };
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		} catch (e: any) {
+			// Catches errors relative to unique values for the puzzles (title and solution)
+			if (e.response.data.solution?.code == 'validation_not_unique') {
+				return fail(e.status, {
+					error: true,
+					message: 'The puzzle you submitted already exists.'
+				});
+			}
+			if (e.response.data.title?.code == 'validation_not_unique') {
+				return fail(e.status, {
+					error: true,
+					message: 'This title already exists.'
+				});
+			}
+
+			// Catches more general errors
 			if (e.status >= 400 && e.status <= 500) {
 				return fail(e.status, {
 					error: true,
