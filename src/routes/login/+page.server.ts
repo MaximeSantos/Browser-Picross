@@ -13,11 +13,11 @@ export const actions = {
 	default: async ({ request, locals, cookies }) => {
 		const data = await request.formData();
 
-		const email = data.get('email')?.toString() || '';
+		const emailOrUsername = data.get('emailOrUsername')?.toString() || '';
 		const password = data.get('password')?.toString() || '';
 
 		try {
-			await locals.pb?.collection('users').authWithPassword(email, password);
+			await locals.pb?.collection('users').authWithPassword(emailOrUsername, password);
 			const isProd = process.env.NODE_ENV === 'production' ? true : false;
 
 			if (locals.pb?.authStore.isValid) {
@@ -32,14 +32,14 @@ export const actions = {
 		} catch (e: any) {
 			if (e.status >= 400 && e.status <= 500) {
 				return fail(e.status, {
-					email,
+					emailOrUsername,
 					error: true,
 					message: 'Failed to authenticate'
 				});
 			}
 			if (e.status >= 500) {
 				return fail(e.status, {
-					email,
+					emailOrUsername,
 					error: true,
 					message: 'Authentication server could not be reached'
 				});

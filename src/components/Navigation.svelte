@@ -16,13 +16,6 @@
 			<span>/</span>
 			<a class="route" class:active={route === '/admin'} href="/admin">Admin</a>
 		{/if}
-		{#if isLoggedIn}
-			<span>/</span>
-			<a class="route" href="/logout" data-sveltekit-reload>Logout</a>
-		{:else}
-			<span>/</span>
-			<a class="route" class:active={route === '/login'} href="/login">Login</a>
-		{/if}
 		<span>/</span>
 		<a
 			class="route"
@@ -32,6 +25,15 @@
 	</nav>
 	<h1><a href="/">Browser Picross</a></h1>
 	<div class="right">
+		{#if !isLoggedIn}
+			<a class="route" class:active={route === '/login'} href="/login">Login</a>
+			<span>/</span>
+			<a class="route" class:active={route === '/register'} href="/register">Register</a>
+		{/if}
+		{#if isLoggedIn}
+			<a class="route" href="/logout" data-sveltekit-reload>Logout</a>
+			<span>/</span>
+		{/if}
 		{#if isLoggedIn && username}
 			<p>Hello {username}</p>
 		{/if}
@@ -59,6 +61,8 @@
 	}
 
 	.right {
+		display: flex;
+		flex-direction: row;
 		margin-right: 1rem;
 	}
 

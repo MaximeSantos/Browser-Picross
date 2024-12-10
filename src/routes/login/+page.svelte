@@ -5,13 +5,18 @@
 </script>
 
 <h2>Login</h2>
-<p>No account creation allowed yet.</p>
 <p>You will need to login in order to submit your own puzzle.</p>
-<p>In the future, logging in will allow your progression to be saved too.</p>
+<p>No account yet ? <a href="/register">Sign up here.</a></p>
 
 <form method="POST">
 	<div class="input-container">
-		<input type="email" name="email" required aria-required="true" placeholder="Email" />
+		<input
+			type="text"
+			name="emailOrUsername"
+			required
+			aria-required="true"
+			placeholder="Email or username"
+		/>
 		<input type="password" name="password" required aria-required="true" placeholder="Password" />
 	</div>
 	<button type="submit">Confirm</button>
@@ -41,5 +46,9 @@
 	}
 	button {
 		margin-bottom: 1rem;
+	}
+
+	a {
+		font-size: 1.2rem;
 	}
 </style>
