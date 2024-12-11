@@ -39,3 +39,38 @@
 	<h2>You won !</h2>
 	<a href="/">Go back to the list of Puzzles</a>
 {/if}
+<div class="help-container">
+	<h2>Controls</h2>
+	<div>
+		<p>Left Click = Fill</p>
+		<p>Right Click = Cross</p>
+		<p>Middle Click = Erase</p>
+	</div>
+	<div id="translation-container">
+		<p class="translation">Clic Gauche = Remplir</p>
+		<p class="translation">Clic Droit = Rayer</p>
+		<p class="translation">Clic Molette = Effacer</p>
+	</div>
+</div>
+
+<style>
+	h2 {
+		margin: 0 0 0.5rem 0;
+		text-align: center;
+	}
+
+	.help-container {
+		margin-top: 5rem;
+		padding: 1rem;
+		border: 1px solid var(--border-light);
+		border-radius: 0.2rem;
+	}
+
+	.translation {
+		font-style: italic;
+	}
+
+	#translation-container {
+		margin-top: 1rem;
+	}
+</style>
