@@ -22,33 +22,42 @@ export const actions = {
 		if (!email && !userName) {
 			return fail(400, {
 				missing: true,
-				message: 'You need a username or an email to register.'
+				message: 'You need a username, an email, or both to register.'
 			});
 		}
-		if (userName && userName.length < 2) {
+		if ((userName && userName.length < 3) || (userName && userName.length > 50)) {
 			return fail(400, {
+				email,
+				userName,
 				error: true,
-				message: 'Username needs to be at least 3 characters long.'
+				message: 'Username needs to be between 3 and 50 characters long.'
 			});
 		}
 		if (!password) {
-			return fail(400, { missing: true, message: 'Missing password.' });
+			return fail(400, { email, userName, missing: true, message: 'Missing password.' });
 		}
-		if (password.length < 8) {
+		if (password.length < 8 || password.length > 72) {
 			return fail(400, {
+				email,
+				userName,
 				error: true,
-				message: 'Password needs to be at least 8 characters long.'
+				message: 'Password needs to be between 8 and 72 characters long.'
 			});
 		}
 		if (!passwordConfirm) {
-			return fail(400, { missing: true, message: 'Missing password confirmation.' });
+			return fail(400, {
+				email,
+				userName,
+				missing: true,
+				message: 'Missing password confirmation.'
+			});
 		}
 		if (password != passwordConfirm) {
 			return fail(400, {
 				email,
 				userName,
 				error: true,
-				message: 'Password confirmation did not match the password.'
+				message: 'Password and Confirm password did not match.'
 			});
 		}
 

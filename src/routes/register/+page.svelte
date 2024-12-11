@@ -7,16 +7,24 @@
 <h2>Register</h2>
 <p>You need to be registered in order to submit your own puzzles.</p>
 <p>In the future, this will allow your progression to be saved too.</p>
-<em>For this version of the website, you don't need an email to register, a username will do.</em>
+<em>For this version of the website, you may register without an email.</em>
 
 <form method="POST">
 	<div class="input-container">
 		<!-- TODO handle the TS error properly. It seems to be what SK docs recommends https://svelte.dev/docs/kit/form-actions -- Probably need to custom type it-->
-		<input type="text" name="userName" placeholder="Username" value={form?.userName ?? ''} />
+		<input
+			type="text"
+			name="userName"
+			placeholder="Username"
+			value={form?.userName ?? ''}
+			minlength="3"
+			maxlength="50"
+		/>
 		<input type="email" name="email" placeholder="Email" value={form?.email ?? ''} />
 		<input
 			type="password"
 			minlength="8"
+			maxlength="72"
 			name="password"
 			required
 			aria-required="true"
@@ -25,6 +33,7 @@
 		<input
 			type="password"
 			minlength="8"
+			maxlength="72"
 			name="passwordConfirm"
 			required
 			aria-required="true"
